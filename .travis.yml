@@ -6,7 +6,7 @@ before_install:
 - sudo dpkg -i libfreetype6-dev_2.5.2-1ubuntu2_amd64.deb libfreetype6_2.5.2-1ubuntu2_amd64.deb
 - sudo apt-get update -qq
 - sudo apt-get install -y fonts-droid
-- go get -u code.google.com/p/go.tools/cmd/cover
+- go get -u golang.org/x/tools/cmd/cover
 - go get -u github.com/mattn/goveralls
 script:
 - go test -race -i
