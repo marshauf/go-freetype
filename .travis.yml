@@ -1,0 +1,14 @@
+language: go
+go: 1.4
+before_install:
+- wget https://launchpad.net/ubuntu/+archive/primary/+files/libfreetype6-dev_2.5.2-1ubuntu2_amd64.deb
+- wget https://launchpad.net/ubuntu/+archive/primary/+files/libfreetype6_2.5.2-1ubuntu2_amd64.deb
+- sudo dpkg -i libfreetype6-dev_2.5.2-1ubuntu2_amd64.deb libfreetype6_2.5.2-1ubuntu2_amd64.deb
+- sudo apt-get update -qq
+- sudo apt-get install -y fonts-droid
+- go get -u code.google.com/p/go.tools/cmd/cover
+- go get -u github.com/mattn/goveralls
+script:
+- go test -race -i
+- go test -covermode=count -coverprofile=profile.cov
+- $HOME/gopath/bin/goveralls -coverprofile=profile.cov -service=travis-ci
